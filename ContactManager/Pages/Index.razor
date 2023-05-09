@@ -1,0 +1,56 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+@using ContactManager.Data
+@using System.Net.Http.Json
+@inject ContactsContext _context
+@inject HttpClient Http
+@inject HttpClient MyAPI
+
+
+<PageTitle>Contacts</PageTitle>
+
+<h1>Contacts</h1>
+
+<button class="btn btn-primary" @onclick='() => NavigationManager.NavigateTo("/add-contact")'>Add Contact</button>
+
+@* @if (_contacts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table>
+        <thead>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Birthdate</th>
+            <th>Phone No</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            @foreach (var contact in _contacts)
+            {
+                <tr>
+                    <td>@contact.LastName</td>
+                    <td>@contact.FirstName</td>
+                    <td>@contact.BirthDate</td>
+                    <td>@contact.PhoneNumber</td>
+                    <td>
+                        Delete
+                        @* <button class="btn btn-primary" @onclick='() => NavigationManager.NavigateTo("/edit-contact/" + contact.Id)'>Edit</button>
+                        <button class="btn btn-danger" @onclick='() => DeleteContact(contact.Id)'>Delete</button> 
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Contacts>? _contacts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _contacts = await MyAPI.GetFromJsonAsync<List<Contacts>>("api/contacts");
+    }
+} *@
